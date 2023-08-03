@@ -10,7 +10,11 @@ func HandleBasic(w http.ResponseWriter, r *http.Request) {
 	id := vars["id"]
 	var redirection *Redirect
 	for _, red := range cfg.Redirections {
+		if redirection != nil {
+			continue
+		}
 		if id == red.Id {
+			println("id", red.Path)
 			redirection = &red
 		}
 	}
@@ -18,7 +22,11 @@ func HandleBasic(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
+	println("path", redirection.Path)
+	for i, u := range vars {
+		println(i, u)
+	}
 	redirect := vars["redirect"]
-	loc := Location{redirect, redirection.Path.generateOrigin()}
+	loc := Location{redirection.Path.generateOrigin(), redirect}
 	http.Redirect(w, r, loc.generateUrl(), http.StatusSeeOther)
 }
