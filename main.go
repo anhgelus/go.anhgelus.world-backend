@@ -15,7 +15,7 @@ func main() {
 		panic(err)
 	}
 
-	src.LoadConfig("/config/redirections.toml")
+	src.LoadConfig("/config/config.toml")
 
 	r := mux.NewRouter()
 	r.HandleFunc("/{id}/{redirect:.*}", src.HandleBasic)

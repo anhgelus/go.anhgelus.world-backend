@@ -10,6 +10,7 @@ import (
 var cfg Config
 
 type Config struct {
+	Origin       string
 	Redirections []Redirect
 }
 
@@ -26,7 +27,7 @@ type Location struct {
 }
 
 func (p *Path) generateOrigin() string {
-	return fmt.Sprintf("https://%s.anhgelus.world/", *p)
+	return fmt.Sprintf(cfg.Origin, *p)
 }
 
 func (l *Location) generateUrl() string {
@@ -54,6 +55,7 @@ func createFile(path string) {
 	red = append(red, Redirect{"b", "blog"})
 	red = append(red, Redirect{"c", "cloud"})
 	def.Redirections = red
+	def.Origin = "https://%s.anhgelus.world/"
 	cfg = def
 	f, err := os.Create(path)
 	if err != nil {
