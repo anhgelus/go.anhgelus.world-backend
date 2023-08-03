@@ -26,12 +26,10 @@ type Location struct {
 }
 
 func (p *Path) generateOrigin() string {
-	println(*p)
 	return fmt.Sprintf("https://%s.anhgelus.world/", *p)
 }
 
 func (l *Location) generateUrl() string {
-	println(fmt.Sprintf("%s%s", l.Origin, l.Uri))
 	return fmt.Sprintf("%s%s", l.Origin, l.Uri)
 }
 
