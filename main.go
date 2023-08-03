@@ -5,10 +5,18 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
 func main() {
+	err := os.Mkdir("/config", 0777)
+	if err != nil && !os.IsExist(err) {
+		panic(err)
+	}
+
+	src.LoadConfig("/config/redirections.toml")
+
 	r := mux.NewRouter()
 	r.HandleFunc("/{id}/{return:.+}", src.HandleBasic)
 
