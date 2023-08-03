@@ -18,7 +18,7 @@ func main() {
 	src.LoadConfig("/config/redirections.toml")
 
 	r := mux.NewRouter()
-	r.HandleFunc("/{id}/{redirect:.+}", src.HandleBasic)
+	r.HandleFunc("/{id}/{redirect:.*}", src.HandleBasic)
 
 	srv := &http.Server{
 		Handler:      r,
