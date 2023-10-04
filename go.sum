@@ -1,3 +1,5 @@
+github.com/anhgelus/human-readable-slug v0.0.0-20231004103739-c36c9283a218 h1:AU1vLbC5u1M892d38U2Nn7faYNo2IAaOrS7NoVm08n0=
+github.com/anhgelus/human-readable-slug v0.0.0-20231004103739-c36c9283a218/go.mod h1:t34uJSBnlURTAPevayv8LHgrtUkPI8WhIGh2+gwJKGU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
