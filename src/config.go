@@ -7,11 +7,20 @@ import (
 	"os"
 )
 
-var cfg Config
+var Cfg Config
 
 type Config struct {
 	Origin       string
 	Redirections []Redirect
+	Credentials  DatabaseCredentials
+}
+
+type DatabaseCredentials struct {
+	Host     string
+	User     string
+	Password string
+	DBName   string
+	Port     uint
 }
 
 type Redirect struct {
@@ -27,7 +36,7 @@ type Location struct {
 }
 
 func (p *Path) generateOrigin() string {
-	return fmt.Sprintf(cfg.Origin, *p)
+	return fmt.Sprintf(Cfg.Origin, *p)
 }
 
 func (l *Location) generateUrl() string {
@@ -42,7 +51,7 @@ func LoadConfig(path string) {
 		createFile(path)
 		return
 	}
-	err = toml.Unmarshal(val, &cfg)
+	err = toml.Unmarshal(val, &Cfg)
 	if err != nil {
 		panic(err)
 	}
@@ -56,7 +65,7 @@ func createFile(path string) {
 	red = append(red, Redirect{"c", "cloud"})
 	def.Redirections = red
 	def.Origin = "https://%s.anhgelus.world/"
-	cfg = def
+	Cfg = def
 	f, err := os.Create(path)
 	if err != nil {
 		panic(err)

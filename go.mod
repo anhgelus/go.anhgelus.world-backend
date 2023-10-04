@@ -11,4 +11,5 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.9 // indirect
 	gorm.io/gorm v1.25.4 // indirect
+	gorm.io/driver/postgres v1.4.7 // indirect
 )
