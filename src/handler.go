@@ -6,6 +6,10 @@ import (
 )
 
 func HandleBasic(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
 	vars := mux.Vars(r)
 	id := vars["id"]
 	var redirection Redirect
@@ -24,6 +28,14 @@ func HandleBasic(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleSlug(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodGet {
+		getSlug(w, r)
+	} else {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
+}
+
+func getSlug(w http.ResponseWriter, r *http.Request) {
 	slug := mux.Vars(r)["redirect"]
 	redirect := Redirection{}
 	DB.First(&redirect, "slug = ?", slug)
